@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<title>confirm</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="contents" class="register-contents">
+		<h1>Comfirm Your Information.</h1>
+		<hr>
+		<div class="information-wrapper">
+			<table th:object="${registerFormModel}">
+				<tr>
+					<th>Name</th>
+					<td th:text="*{firstName + lastName}"></td>
+				</tr>
+				<tr>
+					<th>Date of Birth</th>
+					<td th:text="*{year + '/' + month + '/' + date}"></td>
+				</tr>
+				<tr>
+					<th>Sex</th>
+					<td th:text="${sex}"></td>
+				</tr>
+				<tr>
+					<th>User ID</th>
+					<td th:text="*{userId}"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

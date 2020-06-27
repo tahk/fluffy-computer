@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Name</title>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+<link rel="stylesheet" th:href=@{/css/GradleTest.css}>
+</head>
+<body>
+	<div th:replace="components/fragment :: commonHeader() "></div>
+	<div class="wrapper-center">
+		<form class="ui form" th:action="@{/profile/age}" method="post">
+			<div class="field">
+				<label for="name">名前を入力してください</label> <input type="text" name="name"
+					id="name" />
+			</div>
+			<p>
+				<input class="ui button" type="submit" value="next">
+			</p>
+		</form>
+	</div>
+</body>
+</html>
