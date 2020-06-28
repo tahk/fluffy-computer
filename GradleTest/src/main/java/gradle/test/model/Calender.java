@@ -16,6 +16,9 @@ public class Calender {
 	private List<String> yearList = new ArrayList<String>();
 	private List<String> monthList = new ArrayList<String>();
 	private List<String> dayList = new ArrayList<String>();
+	private int yearListVersion = 0;
+	private int monthListVersion = 0;
+	private int dayListVersion = 0;
 
 	public void addYear(String year) {
 		this.yearList.add(year);
@@ -28,5 +31,19 @@ public class Calender {
 	public void addDay(String day) {
 		this.dayList.add(day);
 	}
+
+	public void yearListVersionUp() {
+		this.yearListVersion++;
+	}
+
+	public void monthListVersionUp() {
+		this.monthListVersion++;
+	}
+
+	public void dayListVersionUp() {
+		this.dayListVersion++;
+	}
+
+
 
 }

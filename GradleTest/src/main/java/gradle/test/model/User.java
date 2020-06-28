@@ -1,8 +1,6 @@
 package gradle.test.model;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,29 +30,26 @@ public class User implements Serializable {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "b_year")
-	private String bYear;
-
-	@Column(name = "b_monthr")
-	private String bMonth;
-
-	@Column(name = "b_day")
-	private String bDay;
+	@Column(name = "date_of_birth")
+	private String dateOfBirth;
 
 	@Column(name = "sex")
 	private String sex;
 
-	@Column(name = "userId")
+	@Column(name = "user_id")
 	private String userId;
 
-	@Column(name = "userName")
+	@Column(name = "user_name")
 	private String userName;
 
+	@Column(name = "password")
+	private String password;
+
 	@Column(name = "reg_date")
-	private Date reg_date;
+	private String regDate;
 
 	@Column(name = "lst_upd")
-	private Timestamp lst_upd;
+	private String lstUpd;
 
 	@Version
 	@Column(name = "version")

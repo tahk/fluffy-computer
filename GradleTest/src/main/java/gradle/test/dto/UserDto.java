@@ -1,8 +1,5 @@
 package gradle.test.dto;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,11 +13,7 @@ public class UserDto {
 
 	private String lastName;
 
-	private String bYear;
-
-	private String bMonth;
-
-	private String bDay;
+	private String dateOfBirth;
 
 	private String sex;
 
@@ -28,9 +21,11 @@ public class UserDto {
 
 	private String userName;
 
-	private Date reg_date;
+	private String password;
 
-	private Timestamp lst_upd;
+	private String regDate;
+
+	private String lstUpd;
 
 	private Integer version;
 
