@@ -26,13 +26,13 @@ public class RegisterFormModel {
 	private String lastName;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	private String year;
+	private String bYear;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	private String month;
+	private String bMonth;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	private String day;
+	private String bDay;
 
 	private String sex;
 
@@ -62,11 +62,11 @@ public class RegisterFormModel {
 
 	@AssertTrue(message = Messages.ERRMSG_03)
 	public boolean isValidDate() {
-		if (this.year.equals("") | this.month.equals("") | this.day.equals("")) {
+		if (this.bYear.equals("") | this.bMonth.equals("") | this.bDay.equals("")) {
 			return true;
 		}
 		// 日付の妥当性チェック
-		String dateOfBirth = this.year + "/" + this.month + "/" + this.day;
+		String dateOfBirth = this.bYear + "/" + this.bMonth + "/" + this.bDay;
 		DateFormat format = DateFormat.getDateInstance();
 		format.setLenient(false);
 		try {

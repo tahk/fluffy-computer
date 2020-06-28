@@ -25,21 +25,21 @@
 				<div class="fields">
 					<div class="field">
 						<label>Date of Birth</label>
-						<select class="ui fluid search dropdown" th:field="*{year}">
+						<select class="ui fluid search dropdown" th:field="*{bYear}">
 							<option value="">Year</option>
 							<option th:each="year : ${yearList}" th:value="${year}" th:text="${year}"></option>
 						</select>
 					</div>
 					<div class="field">
 						<label></label>
-						<select class="ui fluid search dropdown" th:field="*{month}">
+						<select class="ui fluid search dropdown" th:field="*{bMonth}">
 							<option value="">Month</option>
 							<option th:each="month : ${monthList}" th:value="${month}" th:text="${month}"></option>
 						</select>
 					</div>
 					<div class="field">
 						<label></label>
-						<select class="ui fluid search dropdown" th:field="*{day}">
+						<select class="ui fluid search dropdown" th:field="*{bDay}">
 							<option value="">Day</option>
 							<option th:each="day : ${dayList}" th:value="${day}" th:text="${day}"></option>
 						</select>
