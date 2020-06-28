@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<title>top</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="contents" class="memorandum-contents">
+		<h1>Memorandum</h1>
+		<hr>
+		<p>This is my first attempt to build WEB application by using Spring Boot.</p>
+		<p>It includes some challenges for me like below:</p>
+		<ul>
+			<li>to use Gradle</li>
+			<li>to use Thymeleaf Layout Dialect</li>
+			<li>to use fragment (Thymeleaf)</li>
+			<li>to use enum</li>
+			<li>to use Semantic UI (CDN)</li>
+			<li>to use FontAwesome (CDN)</li>
+			<li>to use cyrillic font (CDN)</li>
+			<li>to use ModelMapper</li>
+		</ul>
+		<p>And I'll try to use</p>
+		<ul>
+			<li>JPA</li>
+			<li>AWS (for example EC2, RDS)</li>
+		</ul>
+		<p><strong>2020/06/27 I pushed this project to git, so the source is available on GitHub.</strong></p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<title>register</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="contents" class="register-contents">
+		<h1>Sign up and get started!</h1>
+		<hr>
+		<div>
+			<form class="ui form" method="POST" th:action="@{/register.html}"
+				th:object="${registerFormModel}">
+				<div class="field">
+					<label>First Name</label> <input type="text" th:field="*{firstName}"
+						placeholder="First Name">
+				</div>
+				<div class="field">
+					<label>Last Name</label> <input type="text" th:field="*{lastName}"
+						placeholder="Last Name">
+				</div>
+				<div class="fields">
+					<div class="field">
+						<label>Date of Birth</label>
+						<select class="ui fluid search dropdown" th:field="*{year}">
+							<option value="">Year</option>
+							<option th:each="year : ${yearList}" th:value="${year}" th:text="${year}"></option>
+						</select>
+					</div>
+					<div class="field">
+						<label></label>
+						<select class="ui fluid search dropdown" th:field="*{month}">
+							<option value="">Month</option>
+							<option th:each="month : ${monthList}" th:value="${month}" th:text="${month}"></option>
+						</select>
+					</div>
+					<div class="field">
+						<label></label>
+						<select class="ui fluid search dropdown" th:field="*{day}">
+							<option value="">Day</option>
+							<option th:each="day : ${dayList}" th:value="${day}" th:text="${day}"></option>
+						</select>
+					</div>
+					<div class="field">
+						<label>Sex</label>
+						<select class="ui fluid search dropdown" th:field="*{sex}">
+							<option value="">Sex</option>
+							<option th:each="sex : ${sexList}" th:value="${sex.getKey()}" th:text="${sex.getValue()}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="field">
+					<label>User ID</label> <input type="text" th:field="*{userId}"
+						placeholder="User ID">
+				</div>
+				<div class="field">
+					<label>User Name</label> <input type="text" th:field="*{userName}"
+						placeholder="User Name">
+				</div>
+				<div class="field">
+					<label>Password</label> <input type="password"
+						th:field="*{password}" placeholder="Password">
+				</div>
+				<div class="field">
+					<label>Comfirm Password</label> <input type="password"
+						th:field="*{passwordConf}" placeholder="Password">
+				</div>
+				<div class="field">
+					<div class="ui checkbox">
+						<input type="checkbox" tabindex="0" class="hidden"> <label>I
+							agree to the Terms and Conditions (those don't exist)</label>
+					</div>
+				</div>
+				<button class="ui button" type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

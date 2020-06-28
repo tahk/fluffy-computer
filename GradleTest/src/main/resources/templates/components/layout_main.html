@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>top</title>
+<script src="https://kit.fontawesome.com/1abb52c96c.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+<link rel="stylesheet" th:href=@{/css/GradleTest.css}>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div>
+		<div class="header-wrapper">
+			<h1 class="header-logo">
+				Звездный Свет <i class="fa fa-star "></i>
+			</h1>
+			<div class="header-btn-wrapper">
+				<button class="ui button" onclick="location.href='register'">Sign Up</button>
+				<button class="ui button" onclick="location.href='login'">Login</button>
+			</div>
+		</div>
+	</div>
+	<div layout:fragment="roomForBanner"></div>
+	<div class="main-container">
+			<div class="ui vertical menu">
+				<div class="item">
+					<div class="header">Introduction</div>
+					<div class="menu">
+						<a class="item">What is Звездный Свет ?</a>
+					</div>
+				</div>
+				<div class="item">
+					<div class="header">Services</div>
+					<div class="menu">
+						<a class="item">comming soon</a> <a class="item">comming soon</a>
+					</div>
+				</div>
+				<div class="item">
+					<div class="header">About Us</div>
+					<div class="menu">
+						<a class="item">infomations</a> <a class="item" th:href="@{/memorandum}">memorandum</a>
+					</div>
+				</div>
+				<div class="item">
+					<div class="header">Support</div>
+					<div class="menu">
+						<a class="item">comming soon</a> <a class="item">FAQs</a>
+					</div>
+				</div>
+			</div>
+		<div class="content-wrapper">
+			<div class="contents" layout:fragment="contents"></div>
+		</div>
+	</div>
+	<div class="footer-wrapper"></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<title>top</title>
+</head>
+<body>
+	<div layout:fragment="roomForBanner">
+		<div class="top_img">
+			<img th:src="@{/images/GradleTest_top.jpg}">
+		</div>
+	</div>
+	<div layout:fragment="contents" class="top-contents">
+		<h1>Здравствуйте.</h1>
+		<hr>
+		<p>hogehoge.</p>
+		<p>To use Звездный Свет, you need to sigh up or login.</p>
+		<div class="top-signup-or-login">
+			<button class="ui button" onclick="location.href='register'">Sign Up</button>
+			<p></p>
+			<button class="ui button" onclick="location.href='login'">Login</button>
+		</div>
+	</div>
+</body>
+</html>
