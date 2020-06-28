@@ -80,6 +80,15 @@
 	color: dimgray;
 }
 
+.btn-wrapper-center {
+	width: 70%;
+	margin: 0 auto;
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	padding: 20px;
+	text-align: center;
+}
+
 .top-contents h1 {
 	font-family: 'PT Serif', serif;
 }
@@ -106,3 +115,4 @@
 .header-spacer {
 	height: 60px;
 }
+

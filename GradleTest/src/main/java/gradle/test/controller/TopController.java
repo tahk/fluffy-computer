@@ -1,5 +1,6 @@
 package gradle.test.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,17 +14,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import gradle.test.dto.UserDto;
 import gradle.test.model.CalenderEnum.CalenderIndex;
 import gradle.test.model.LoginFormModel;
 import gradle.test.model.RegisterFormModel;
-import gradle.test.model.User;
 import gradle.test.service.ChoreService;
+import gradle.test.service.UserServiceImpl;
 
 @Controller
 public class TopController {
 
 	@Autowired
 	private ChoreService choreService;
+
+	@Autowired
+	private UserServiceImpl userService;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -60,13 +65,16 @@ public class TopController {
 	}
 
 	@PostMapping("/register")
-	public String executeRegister(Model model, HttpSession session) {
+	public String executeRegister(Model model, HttpServletRequest request, HttpSession session) {
 		if (session.getAttribute("registerFormModel") == null) {
 			return "register";
 		}
+		if (request.getParameter("confToken") == null) {
+			return "register";
+		}
 		RegisterFormModel registerFormModel = (RegisterFormModel) session.getAttribute("registerFormModel");
-		User user = modelMapper.map(registerFormModel, User.class);
-		
+		UserDto user = modelMapper.map(registerFormModel, UserDto.class);
+		userService.createUser(user);
 		return "register_complete";
 	}
 
@@ -77,6 +85,13 @@ public class TopController {
 		}
 		return "login";
 	}
+
+	@PostMapping("/login")
+	public String login(Model model) {
+
+		return "login";
+	}
+
 
 	@GetMapping("/memorandum")
 	public String showMemorandum() {

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<title>register completed</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="contents" class="register-contents">
+		<h1>Welcome to Звездный Свет.</h1>
+		<hr>
+		<div>
+			<p>Congrat, now you're a member of Звездный Свет.</p>
+			<br>
+			<div class="btn-wrapper-center">
+				<button class="ui button" onclick="location.href='/top'">top</button>
+				<br>
+				<button class="ui button" onclick="location.href='/login'">login</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

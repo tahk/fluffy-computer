@@ -12,7 +12,7 @@
 		<h1>Sign up and get started!</h1>
 		<hr>
 		<div>
-			<form class="ui form" method="POST" th:action="@{/register.html}"
+			<form class="ui form" method="POST" th:action="@{/confirm}"
 				th:object="${registerFormModel}">
 				<div class="field">
 					<label>First Name</label> <input type="text" th:field="*{firstName}"
@@ -32,14 +32,14 @@
 					</div>
 					<div class="field">
 						<label></label>
-						<select class="ui fluid search dropdown" th:field="*{bMonth}">
+						<select class="ui fluid search dropdown" th:field="*{bMonth}" style="margin-top:23px">
 							<option value="">Month</option>
 							<option th:each="month : ${monthList}" th:value="${month}" th:text="${month}"></option>
 						</select>
 					</div>
 					<div class="field">
 						<label></label>
-						<select class="ui fluid search dropdown" th:field="*{bDay}">
+						<select class="ui fluid search dropdown" th:field="*{bDay}" style="margin-top:23px">
 							<option value="">Day</option>
 							<option th:each="day : ${dayList}" th:value="${day}" th:text="${day}"></option>
 						</select>
