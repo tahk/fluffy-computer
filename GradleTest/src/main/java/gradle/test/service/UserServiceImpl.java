@@ -1,5 +1,6 @@
 package gradle.test.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -63,6 +64,12 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(Integer id) {
 		User user = findUserById(id).get();
 		userRepository.delete(user);
+	}
+
+	@Transactional
+	public List<User> findUserByUserId(String userId) {
+		List<User> user = userRepository.findByUserId(userId);
+		return user;
 	}
 
 }

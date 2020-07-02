@@ -74,7 +74,7 @@ public class TopController {
 		// ここでセッションにセット
 		session.setAttribute("registerFormModel", registerFormModel);
 		// 表示用に性別の値を変換
-//		registerFormModel.setSex(choreService.sexValueConverter(registerFormModel.getSex()));
+		model.addAttribute("sex", choreService.sexValueConverter(registerFormModel.getSex()));
 		return "register_conf";
 	}
 
@@ -112,7 +112,13 @@ public class TopController {
 	}
 
 	@PostMapping("/login")
-	public String login(Model model) {
+	public String login(@Valid @ModelAttribute LoginFormModel loginFormModel, BindingResult br, Model model, HttpSession session) {
+		if (br.hasErrors()) {
+			return "login";
+		}
+		UserDto user = new UserDto();
+		user.setUserId(loginFormModel.getUserId());
+		user.setUserId(passwordEncoder.encode(loginFormModel.getPassword()));
 
 		return "login";
 	}

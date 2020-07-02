@@ -14,23 +14,23 @@
 		<div class="information-wrapper">
 			<table th:object="${registerFormModel}">
 				<tr>
-					<th>Name</th>
+					<th align="left">Name</th>
 					<td th:text="*{firstName + lastName}"></td>
 				</tr>
 				<tr>
-					<th>Date of Birth</th>
+					<th align="left">Date of Birth</th>
 					<td th:text="*{dateOfBirth}"></td>
 				</tr>
 				<tr>
-					<th>Sex</th>
+					<th align="left">Sex</th>
 					<td th:text="${sex}"></td>
 				</tr>
 				<tr>
-					<th>User ID</th>
+					<th align="left">User ID</th>
 					<td th:text="*{userId}"></td>
 				</tr>
 				<tr>
-					<th>User Name</th>
+					<th align="left">User Name</th>
 					<td th:text="*{userName}"></td>
 				</tr>
 			</table>
