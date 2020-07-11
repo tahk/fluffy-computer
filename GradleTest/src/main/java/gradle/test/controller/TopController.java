@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import gradle.test.dto.UserDto;
 import gradle.test.model.CalenderEnum.CalenderIndex;
 import gradle.test.model.LoginFormModel;
+import gradle.test.model.LoginSessionModel;
+import gradle.test.model.LoginUser;
 import gradle.test.model.RegisterFormModel;
+import gradle.test.model.User;
 import gradle.test.service.ChoreService;
 import gradle.test.service.UserServiceImpl;
 
@@ -30,6 +33,9 @@ public class TopController {
 
 	@Autowired
 	private UserServiceImpl userService;
+
+	@Autowired
+	private LoginSessionModel loginSession;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -116,11 +122,18 @@ public class TopController {
 		if (br.hasErrors()) {
 			return "login";
 		}
-		UserDto user = new UserDto();
-		user.setUserId(loginFormModel.getUserId());
-		user.setUserId(passwordEncoder.encode(loginFormModel.getPassword()));
-
-		return "login";
+		// ログイン処理
+		User foundUser = userService.findUserByUserId(loginFormModel.getUserId()).get(0);
+		if (passwordEncoder.matches(loginFormModel.getPassword(), passwordEncoder.encode(loginFormModel.getPassword()))) {
+			LoginUser loginUser = new LoginUser();
+			loginUser.setUserId(foundUser.getUserId());
+			loginUser.setUserName(foundUser.getUserName());
+			loginSession.doLogin(loginUser);
+			model.addAttribute("loginUser", loginSession.getLoginUser());
+		} else {
+			return "login";
+		}
+		return "menu";
 	}
 
 

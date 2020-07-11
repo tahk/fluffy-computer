@@ -13,10 +13,14 @@
 		<h1>Login</h1>
 		<hr>
 		<div class="wrapper-center">
-			<form method="POST" th:action="@{/login}" th:object="${loginFormModel}">
-				<input type="text" th:field="*{userId}" placeholder="User ID">
-				<input type="password" th:field="*{password}" placeholder="Password">
-				<button class="ui button" type="submit">Login</button>
+			<form method="POST" th:action="@{/login}" th:object="${loginFormModel}" class="ui form">
+				<div class="field">
+					<input type="text" th:field="*{userId}" placeholder="User ID">
+				</div>
+				<div class="field">
+					<input type="password" th:field="*{password}" placeholder="Password">
+				</div>
+				<button class="ui button" type="submit" style="margin: 0 auto;">Login</button>
 			</form>
 			<a href="#">forgot password?</a>
 		</div>

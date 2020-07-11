@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<title>menu</title>
+</head>
+<body>
+	<div layout:fragment="roomForBanner">
+		<div class="top_img">
+			<img th:src="@{/images/GradleTest_top.jpg}">
+		</div>
+	</div>
+	<div layout:fragment="contents" class="top-contents">
+		<h1>Привет, <span th:text="${loginUser.userName}"></span>!</h1>
+		<hr>
+	</div>
+</body>
+</html>
