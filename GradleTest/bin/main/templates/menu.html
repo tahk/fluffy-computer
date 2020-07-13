@@ -15,6 +15,15 @@
 	<div layout:fragment="contents" class="top-contents">
 		<h1>Привет, <span th:text="${loginUser.userName}"></span>!</h1>
 		<hr>
+		<div>
+			<p>サービスをえらんでね</p>
+			<div>
+				<div>
+					<a th:href="@{/wordcards/}" class="ui orange button"><i class="fas fa-bookmark"></i>単語帳をみる</a>
+				</div>
+				<button class="ui blue button"><i class="fas fa-user-circle"></i>プロフィールをみる・変える</button>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

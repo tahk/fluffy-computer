@@ -1,5 +1,7 @@
 package gradle.test.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,14 +18,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gradle.test.dto.UserDto;
+import gradle.test.entity.user.User;
 import gradle.test.model.CalenderEnum.CalenderIndex;
 import gradle.test.model.LoginFormModel;
 import gradle.test.model.LoginSessionModel;
 import gradle.test.model.LoginUser;
 import gradle.test.model.RegisterFormModel;
-import gradle.test.model.User;
 import gradle.test.service.ChoreService;
 import gradle.test.service.UserServiceImpl;
+import gradle.test.service.table.TableServiceImpl;
 
 @Controller
 public class TopController {
@@ -33,6 +36,9 @@ public class TopController {
 
 	@Autowired
 	private UserServiceImpl userService;
+
+	@Autowired
+	private TableServiceImpl tableService;
 
 	@Autowired
 	private LoginSessionModel loginSession;
@@ -106,6 +112,18 @@ public class TopController {
 		user.setLstUpd(choreService.getTime());
 		user.setVersion(0);
 		userService.createUser(user);
+
+		// 登録したユーザのidを取得
+		List<User> fetched = userService.findUserByUserId(user.getUserId());
+		Integer id = fetched.get(0).getId();
+		// tablemanagerテーブルを作成
+		tableService.createTableManagerTable(id);
+		// tablemanagerテーブルを初期化
+		tableService.initializeTableManagerTable(id);
+		// 1つ目のcontentstableテーブルを作成
+		tableService.createContentsTable(id, 1);
+		// 作成したcontentstableテーブルを初期化
+		tableService.initializeContentsTable(id, 1);
 		return "register_complete";
 	}
 
@@ -126,6 +144,7 @@ public class TopController {
 		User foundUser = userService.findUserByUserId(loginFormModel.getUserId()).get(0);
 		if (passwordEncoder.matches(loginFormModel.getPassword(), passwordEncoder.encode(loginFormModel.getPassword()))) {
 			LoginUser loginUser = new LoginUser();
+			loginUser.setId(foundUser.getId());
 			loginUser.setUserId(foundUser.getUserId());
 			loginUser.setUserName(foundUser.getUserName());
 			loginSession.doLogin(loginUser);

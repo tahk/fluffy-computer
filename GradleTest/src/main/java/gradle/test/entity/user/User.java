@@ -1,4 +1,4 @@
-package gradle.test.model;
+package gradle.test.entity.user;
 
 import java.io.Serializable;
 

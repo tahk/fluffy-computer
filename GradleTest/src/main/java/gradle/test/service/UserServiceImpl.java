@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import gradle.test.dto.UserDto;
-import gradle.test.model.User;
+import gradle.test.entity.user.User;
 import gradle.test.repository.UserRepository;
 
 @Service

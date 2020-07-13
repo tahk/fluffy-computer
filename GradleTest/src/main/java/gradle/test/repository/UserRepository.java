@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import gradle.test.model.User;
+import gradle.test.entity.user.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 

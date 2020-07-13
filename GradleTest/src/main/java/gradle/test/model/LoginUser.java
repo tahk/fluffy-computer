@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class LoginUser implements Cloneable {
 
+	private Integer id;
 	private String userId;
 	private String userName;
 
