@@ -1,5 +1,7 @@
 package gradle.test.service.table;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import gradle.test.entity.table.TableManager;
 import gradle.test.repository.ContentsTableRepository;
 import gradle.test.repository.TableManagerRepository;
 
@@ -76,6 +79,10 @@ public class TableServiceImpl implements TableService {
 			System.out.println("failed to initialize contentstable");
 			e.printStackTrace();
 		}
+	}
+
+	public List<TableManager> selectAllFromTableManager(Integer id) {
+		return tableManagerRepository.getTableManager(id);
 	}
 
 }

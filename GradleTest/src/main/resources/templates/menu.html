@@ -4,7 +4,9 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{components/layout_main}">
 <head>
+<meta charset="UTF-8">
 <title>menu</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
 </head>
 <body>
 	<div layout:fragment="roomForBanner">
@@ -19,9 +21,11 @@
 			<p>サービスをえらんでね</p>
 			<div>
 				<div>
-					<a th:href="@{/wordcards/}" class="ui orange button"><i class="fas fa-bookmark"></i>単語帳をみる</a>
+					<a th:href="@{/wordcards/}" class="ui orange button menu_contents" style="display:block; width:70%; margin:0 auto; margin-bottom:10px;"><i class="fas fa-bookmark"></i>   単語帳をみる</a>
 				</div>
-				<button class="ui blue button"><i class="fas fa-user-circle"></i>プロフィールをみる・変える</button>
+				<div>
+					<a href="#" class="ui blue button" style="display:block; width:70%; margin:0 auto; margin-bottom:10px;"><i class="fas fa-user-circle"></i>   プロフィールをみる・変える</a>
+				</div>
 			</div>
 		</div>
 	</div>

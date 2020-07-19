@@ -1,11 +1,17 @@
 package gradle.test.repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import gradle.test.entity.table.TableManager;
 
 @Repository
 public class TableManagerRepository {
@@ -15,6 +21,24 @@ public class TableManagerRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	private class TableManagerRowMapper extends BeanPropertyRowMapper<TableManager> {
+		@Override
+		public TableManager mapRow(ResultSet rs, int rowNum) throws SQLException {
+			TableManager tableManager = new TableManager();
+			tableManager.setId(rs.getInt(1));
+			tableManager.setName(rs.getString(2));
+			tableManager.setColCount(rs.getInt(3));
+			tableManager.setColName1(rs.getString(4));
+			tableManager.setColName2(rs.getString(5));
+			tableManager.setColName3(rs.getString(6));
+			tableManager.setColName4(rs.getString(7));
+			tableManager.setColName5(rs.getString(8));
+			tableManager.setDelFlg(rs.getInt(9));
+			tableManager.setCreatedAt(rs.getString(10));
+			return tableManager;
+		}
+	}
 
 	/**
 	 * tablemanagerテーブルを生成
@@ -56,10 +80,13 @@ public class TableManagerRepository {
 	}
 
 	public int countContentsTables(Integer id) {
-		String sql = "SELECT COUNT(*) FROM :tableName WHERE del_flg = 0";
-		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("tableName", String.valueOf(id) + "_tablemanager");
-		Integer result = namedParameterJdbcTemplate.queryForObject(sql, param, Integer.class);
+//		String sql = "SELECT COUNT(*) FROM :tableName WHERE del_flg = 0";
+//		MapSqlParameterSource param = new MapSqlParameterSource();
+//		param.addValue("tableName", String.valueOf(id) + "_tablemanager");
+//		Integer result = namedParameterJdbcTemplate.queryForObject(sql, param, Integer.class);
+		String sql = "SELECT COUNT(*) FROM " + String.valueOf(id) + "_tablemanager WHERE del_flg = 0";
+		Integer result = jdbcTemplate.queryForObject(sql, Integer.class);
+		System.out.println(result);
 		try {
 			return (int) result;
 		} catch (NumberFormatException e) {
@@ -67,6 +94,12 @@ public class TableManagerRepository {
 			return 0;
 		}
 	}
+
+	public List<TableManager> getTableManager(Integer id) {
+		String sql = "SELECT * FROM " + String.valueOf(id) + "_tablemanager WHERE del_flg = 0";
+		return jdbcTemplate.query(sql, new TableManagerRowMapper());
+	}
+
 
 	private static String buildSqlForCreateTableManagerTable(Integer id) {
 		StringBuilder sb = new StringBuilder();

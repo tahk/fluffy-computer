@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_no_sidebar}">
+<head>
+<meta charset="UTF-8">
+<title>単語帳</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<div style="display:flex; justify-content:space-between;">
+			<div>
+				<h1>my単語帳</h1>
+			</div>
+			<div>
+				<a th:href="@{/add}" class="ui blue button" style="display:inline-block;">
+					<i class="plus icon"></i>   新しい単語帳
+				</a>
+			</div>
+		</div>
+		<hr>
+		<div>
+			<span th:text="${countOfTables}"></span>件
+		</div>
+		<div>
+			<div class="wc_icon" th:each="table, status : ${tableManagerList}">
+				<a th:href="@{/contents/__${table.name}__}" th:text="${table.name}" class="ui orange button" style="display:inline-block; width:70%; margin:0 auto; margin-bottom:10px;"></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
