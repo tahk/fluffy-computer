@@ -1,6 +1,8 @@
 package gradle.test.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -35,15 +37,32 @@ public class ChoreService {
 			switch(type) {
 			case YEAR:
 				calender.addYear(String.format("%4d", i));
+				calender.yearListVersionUp();
 				break;
 			case MONTH:
 				calender.addMonth(String.format("%2d", i));
+				calender.monthListVersionUp();
 				break;
 			case DAY:
 				calender.addDay(String.format("%2d", i));
+				calender.dayListVersionUp();
 				break;
 			}
 		}
+	}
+
+	public int calenderStatus() {
+		int i = 0;
+		if (calender.getYearList().size() != 0) {
+			i += 4;
+		}
+		if (calender.getMonthList().size() != 0) {
+			i += 2;
+		}
+		if (calender.getDayList().size() != 0) {
+			i += 1;
+		}
+		return i;
 	}
 
 	public LinkedHashMap<String, String> getSexList() {
@@ -69,6 +88,18 @@ public class ChoreService {
 			}
 		}
 		return "no selected";
+	}
+
+	public String getDate() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		return sdf.format(date);
+	}
+
+	public String getTime() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		return sdf.format(date);
 	}
 
 }

@@ -6,67 +6,91 @@
 <head>
 <title>register</title>
 <link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/validationEngine.jquery.min.css"
+	type="text/css" />
 </head>
 <body>
 	<div layout:fragment="contents" class="register-contents">
 		<h1>Sign up and get started!</h1>
 		<hr>
 		<div>
-			<form class="ui form" method="POST" th:action="@{/register.html}"
-				th:object="${registerFormModel}">
+			<form id="registerForm" class="ui form" method="POST"
+				th:action="@{/confirm}" th:object="${registerFormModel}">
 				<div class="field">
-					<label>First Name</label> <input type="text" th:field="*{firstName}"
-						placeholder="First Name">
+					<label>First Name</label> <input type="text"
+						th:field="*{firstName}" placeholder="First Name"
+						class="validate[required,custom[onlyLetter]]"> <span
+						th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
 				</div>
 				<div class="field">
 					<label>Last Name</label> <input type="text" th:field="*{lastName}"
-						placeholder="Last Name">
+						placeholder="Last Name"
+						class="validate[required,custom[onlyLetter]]"> <span
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
 				</div>
 				<div class="fields">
 					<div class="field">
-						<label>Date of Birth</label>
-						<select class="ui fluid search dropdown" th:field="*{year}">
+						<label>Date of Birth</label> <select
+							class="ui fluid search dropdown validate[required]"
+							th:field="*{bYear}">
 							<option value="">Year</option>
-							<option th:each="year : ${yearList}" th:value="${year}" th:text="${year}"></option>
+							<option th:each="year : ${yearList}" th:value="${year}"
+								th:text="${year}"></option>
 						</select>
 					</div>
 					<div class="field">
-						<label></label>
-						<select class="ui fluid search dropdown" th:field="*{month}">
+						<label></label> <select
+							class="ui fluid search dropdown validate[required]"
+							th:field="*{bMonth}" style="margin-top: 23px">
 							<option value="">Month</option>
-							<option th:each="month : ${monthList}" th:value="${month}" th:text="${month}"></option>
+							<option th:each="month : ${monthList}" th:value="${month}"
+								th:text="${month}"></option>
 						</select>
 					</div>
 					<div class="field">
-						<label></label>
-						<select class="ui fluid search dropdown" th:field="*{day}">
+						<label></label> <select
+							class="ui fluid search dropdown validate[required]"
+							th:field="*{bDay}" style="margin-top: 23px">
 							<option value="">Day</option>
-							<option th:each="day : ${dayList}" th:value="${day}" th:text="${day}"></option>
+							<option th:each="day : ${dayList}" th:value="${day}"
+								th:text="${day}"></option>
 						</select>
 					</div>
 					<div class="field">
-						<label>Sex</label>
-						<select class="ui fluid search dropdown" th:field="*{sex}">
+						<label>Sex</label> <select class="ui fluid search dropdown"
+							th:field="*{sex}">
 							<option value="">Sex</option>
-							<option th:each="sex : ${sexList}" th:value="${sex.getKey()}" th:text="${sex.getValue()}"></option>
+							<option th:each="sex : ${sexList}" th:value="${sex.getKey()}"
+								th:text="${sex.getValue()}"></option>
 						</select>
 					</div>
 				</div>
 				<div class="field">
 					<label>User ID</label> <input type="text" th:field="*{userId}"
-						placeholder="User ID">
+						placeholder="User ID"
+						class="validate[required,custom[onlyLetterNumber]]"> <span
+						th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
 				</div>
 				<div class="field">
 					<label>User Name</label> <input type="text" th:field="*{userName}"
-						placeholder="User Name">
+						placeholder="User Name"
+						class="validate[required,custom[onlyLetterNumber]]"> <span
+						th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
 				</div>
 				<div class="field">
 					<label>Password</label> <input type="password"
-						th:field="*{password}" placeholder="Password">
+						th:field="*{password}" placeholder="Password"
+						class="validate[required,custom[onlyLetterNumber,minSize[8],maxSize[20]]]">
+					<span th:if="${#fields.hasErrors('password')}"
+						th:errors="*{password}"></span>
 				</div>
 				<div class="field">
 					<label>Comfirm Password</label> <input type="password"
-						th:field="*{passwordConf}" placeholder="Password">
+						th:field="*{passwordConf}" placeholder="Password"
+						class="validate[required,minSize[8],maxSize[20]]]"> <span
+						th:if="${#fields.hasErrors('passwordConf')}"
+						th:errors="*{passwordConf}"></span>
 				</div>
 				<div class="field">
 					<div class="ui checkbox">
@@ -78,5 +102,18 @@
 			</form>
 		</div>
 	</div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery-1.8.2.min.js"
+		type="text/javascript"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery("#registerForm").validationEngine();
+		});
+	</script>
+
 </body>
 </html>

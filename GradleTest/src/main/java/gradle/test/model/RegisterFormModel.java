@@ -16,41 +16,55 @@ import lombok.Setter;
 public class RegisterFormModel {
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	@Size(max = 10, message = "Input less than {max} letters.")
+	@Size(max = 20, message = "Input less than {max} letters.")
 	@Pattern(regexp = "^[a-zA-Z]+$")
 	private String firstName;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	@Size(max = 10, message = "Input less than {max} letters.")
+	@Size(max = 20, message = "Input less than {max} letters.")
 	@Pattern(regexp = "^[a-zA-Z]+$")
 	private String lastName;
 
-	@NotEmpty(message = Messages.ERRMSG_01)
-	private String year;
+	private String dateOfBirth;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	private String month;
+	private String bYear;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	private String day;
+	private String bMonth;
+
+	@NotEmpty(message = Messages.ERRMSG_01)
+	private String bDay;
 
 	private String sex;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	@Size(max = 30, message = "Input less than {max} letters.")
+	@Size(max = 20, message = "Input less than {max} letters.")
 	@Pattern(regexp = "^[a-zA-Z0-9]+$")
 	private String userId;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	@Size(max = 30, message = "Input less than {max} letters.")
+	@Size(max = 20, message = "Input less than {max} letters.")
 	private String userName;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
-	@Size(min = 8, message = "Input less than {max} letters.")
+	@Size(min = 8, max=20, message = "Input less than {max} letters.")
 	private String password;
 
 	@NotEmpty(message = Messages.ERRMSG_01)
 	private String passwordConf;
+
+	public void setBYear(String bYear) {
+		this.bYear = String.format("%4s", bYear).replace(" ", "0");
+	}
+
+	public void setBMonth(String bMonth) {
+		this.bMonth = String.format("%2s", bMonth).replace(" ", "0");
+	}
+
+	public void setBDay(String bDay) {
+		this.bDay = String.format("%2s", bDay).replace(" ", "0");
+	}
 
 	@AssertTrue(message = Messages.ERRMSG_02)
 	public boolean isPwSameToPwC() {
@@ -62,15 +76,17 @@ public class RegisterFormModel {
 
 	@AssertTrue(message = Messages.ERRMSG_03)
 	public boolean isValidDate() {
-		if (this.year.equals("") | this.month.equals("") | this.day.equals("")) {
+		if (this.bYear.equals("") | this.bMonth.equals("") | this.bDay.equals("")) {
 			return true;
 		}
 		// 日付の妥当性チェック
-		String dateOfBirth = this.year + "/" + this.month + "/" + this.day;
+		String dateOfBirth = this.bYear + "/" + this.bMonth + "/" + this.bDay;
 		DateFormat format = DateFormat.getDateInstance();
 		format.setLenient(false);
 		try {
 			format.parse(dateOfBirth);
+			// 日付が有効なとき値をセット
+			setDateOfBirth(dateOfBirth);
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -2,3 +2,10 @@
 	padding: 50px;
 	margin: 60px;
 }
+
+.menu_contents {
+	display:block;
+	width:70%;
+	margin:0 auto;
+	margin-bottom:10px;
+}

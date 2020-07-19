@@ -14,22 +14,40 @@
 		<div class="information-wrapper">
 			<table th:object="${registerFormModel}">
 				<tr>
-					<th>Name</th>
+					<th align="left">Name</th>
 					<td th:text="*{firstName + lastName}"></td>
 				</tr>
 				<tr>
-					<th>Date of Birth</th>
-					<td th:text="*{year + '/' + month + '/' + date}"></td>
+					<th align="left">Date of Birth</th>
+					<td th:text="*{dateOfBirth}"></td>
 				</tr>
 				<tr>
-					<th>Sex</th>
+					<th align="left">Sex</th>
 					<td th:text="${sex}"></td>
 				</tr>
 				<tr>
-					<th>User ID</th>
+					<th align="left">User ID</th>
 					<td th:text="*{userId}"></td>
 				</tr>
+				<tr>
+					<th align="left">User Name</th>
+					<td th:text="*{userName}"></td>
+				</tr>
 			</table>
+		</div>
+		<h3>Please note: Date of Birth can't be changed after you
+			registered once.</h3>
+		<p>The other informations can be fixed later.</p>
+		<br>
+		<div>
+			<form method="POST" th:action="@{/register}">
+				<input type="hidden" name="confToken" value="1" />
+				<div class="ui buttons">
+					<button class="ui button" onclick="location.href='/register'">Back</button>
+					<div class="or"></div>
+					<button class="ui positive button" type="submit">Register</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

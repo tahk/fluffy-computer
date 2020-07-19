@@ -1,10 +1,32 @@
 package gradle.test.dto;
 
-import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
-import gradle.test.model.User;
+@Getter
+@Setter
+public class UserDto {
 
-@Entity
-public class UserDto extends User {
+	private Integer id;
+
+	private String firstName;
+
+	private String lastName;
+
+	private String dateOfBirth;
+
+	private String sex;
+
+	private String userId;
+
+	private String userName;
+
+	private String password;
+
+	private String regDate;
+
+	private String lstUpd;
+
+	private Integer version;
 
 }

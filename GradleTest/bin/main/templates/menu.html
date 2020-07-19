@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_main}">
+<head>
+<meta charset="UTF-8">
+<title>menu</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="roomForBanner">
+		<div class="top_img">
+			<img th:src="@{/images/GradleTest_top.jpg}">
+		</div>
+	</div>
+	<div layout:fragment="contents" class="top-contents">
+		<h1>Привет, <span th:text="${loginUser.userName}"></span>!</h1>
+		<hr>
+		<div>
+			<p>サービスをえらんでね</p>
+			<div>
+				<div>
+					<a th:href="@{/wordcards/}" class="ui orange button menu_contents" style="display:block; width:70%; margin:0 auto; margin-bottom:10px;"><i class="fas fa-bookmark"></i>   単語帳をみる</a>
+				</div>
+				<div>
+					<a href="#" class="ui blue button" style="display:block; width:70%; margin:0 auto; margin-bottom:10px;"><i class="fas fa-user-circle"></i>   プロフィールをみる・変える</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
