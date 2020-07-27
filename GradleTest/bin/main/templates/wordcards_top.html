@@ -26,7 +26,7 @@
 		</div>
 		<div>
 			<div class="wc_icon" th:each="table, status : ${tableManagerList}">
-				<a th:href="@{/contents/__${table.name}__}" th:text="${table.name}" class="ui orange button" style="display:inline-block; width:70%; margin:0 auto; margin-bottom:10px;"></a>
+				<a th:href="@{/wordcards/show/__${table.name}__}" th:text="${table.name}" class="ui orange button" style="display:inline-block; width:70%; margin:0 auto; margin-bottom:10px;"></a>
 			</div>
 		</div>
 	</div>

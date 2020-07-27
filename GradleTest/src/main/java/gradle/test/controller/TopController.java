@@ -119,7 +119,7 @@ public class TopController {
 		// tablemanagerテーブルを作成
 		tableService.createTableManagerTable(id);
 		// tablemanagerテーブルを初期化
-		tableService.initializeTableManagerTable(id);
+//		tableService.initializeTableManagerTable(id);
 		// 1つ目のcontentstableテーブルを作成
 		tableService.createContentsTable(id, 1);
 		// 作成したcontentstableテーブルを初期化

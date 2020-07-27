@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import gradle.test.entity.table.ContentsTable;
 import gradle.test.entity.table.TableManager;
 import gradle.test.repository.ContentsTableRepository;
 import gradle.test.repository.TableManagerRepository;
@@ -81,8 +82,33 @@ public class TableServiceImpl implements TableService {
 		}
 	}
 
+	/**
+	 * tablemanagerテーブルを全て取得します。
+	 * @param id
+	 * @return
+	 */
 	public List<TableManager> selectAllFromTableManager(Integer id) {
 		return tableManagerRepository.getTableManager(id);
+	}
+
+	/**
+	 * テーブル名でtablemanagerテーブルを取得します(削除フラグが0のもの)。
+	 * @param id
+	 * @param tableName
+	 * @return
+	 */
+	public List<TableManager> findFromTableManagerByName(Integer id, String tableName) {
+		return tableManagerRepository.findTableManagerByTableName(id, tableName);
+	}
+
+	/**
+	 * 指定したcontentstableテーブルを取得します。
+	 * @param userId
+	 * @param TableId
+	 * @return
+	 */
+	public List<ContentsTable> findAllFromContentsTableByTableId(Integer userId, Integer tableId) {
+		return contentsTableRepository.findAllFromContentsTableByTableId(userId, tableId);
 	}
 
 }
