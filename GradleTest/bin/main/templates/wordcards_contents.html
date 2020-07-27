@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{components/layout_no_sidebar}">
+<head>
+<meta charset="UTF-8">
+<title>単語帳</title>
+<link rel="stylesheet" th:href=@{/css/GradleTest_decorate.css}>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<h1 th:text="${tableInfo.name}"></h1>
+		<hr>
+		<div>
+			<table class="ui celled table">
+				<thead>
+					<tr>
+						<th th:text="${tableInfo.colName1}">ColName1</th>
+						<th th:if="${tableInfo.colName2 != null}" th:text="${tableInfo.colName2}">ColName2</th>
+						<th th:if="${tableInfo.colName3 != null}" th:text="${tableInfo.colName3}">ColName3</th>
+						<th th:if="${tableInfo.colName4 != null}" th:text="${tableInfo.colName4}">ColName4</th>
+						<th th:if="${tableInfo.colName5 != null}" th:text="${tableInfo.colName3}">ColName5</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="row: ${contents}">
+						<td data-label="${tableInfo.colName1}" th:text="${row.column1}"></td>
+						<td th:if="${tableInfo.colName2 != null}" data-label="${tableInfo.colName2}" th:text="${row.column2}"></td>
+						<td th:if="${tableInfo.colName3 != null}" data-label="${tableInfo.colName3}" th:text="${row.column3}"></td>
+						<td th:if="${tableInfo.colName4 != null}" data-label="${tableInfo.colName4}" th:text="${row.column4}"></td>
+						<td th:if="${tableInfo.colName5 != null}" data-label="${tableInfo.colName5}" th:text="${row.column5}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

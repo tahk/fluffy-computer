@@ -79,6 +79,11 @@ public class TableManagerRepository {
 		return affectedRows;
 	}
 
+	/**
+	 * tablemanagerテーブルのうち削除フラグが0のものの数を取得します。
+	 * @param id
+	 * @return
+	 */
 	public int countContentsTables(Integer id) {
 //		String sql = "SELECT COUNT(*) FROM :tableName WHERE del_flg = 0";
 //		MapSqlParameterSource param = new MapSqlParameterSource();
@@ -95,8 +100,25 @@ public class TableManagerRepository {
 		}
 	}
 
+	/**
+	 * tablemanagerテーブルのうち削除フラグが0のものを全て取得します。
+	 * @param id
+	 * @return
+	 */
 	public List<TableManager> getTableManager(Integer id) {
 		String sql = "SELECT * FROM " + String.valueOf(id) + "_tablemanager WHERE del_flg = 0";
+		return jdbcTemplate.query(sql, new TableManagerRowMapper());
+	}
+
+	/**
+	 * テーブル名でtablemanagerテーブルを取得します(削除フラグが0のもの)。
+	 * @param id
+	 * @param tableName
+	 * @return
+	 */
+	public List<TableManager> findTableManagerByTableName(Integer id, String tableName) {
+		String sql = "SELECT * FROM " + String.valueOf(id) + "_tablemanager WHERE name = '" + tableName + "' AND del_flg = 0" ;
+		System.out.println(sql);
 		return jdbcTemplate.query(sql, new TableManagerRowMapper());
 	}
 
